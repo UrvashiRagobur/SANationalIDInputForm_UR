@@ -6,7 +6,7 @@ export default class Lwc01NationalIDNumberInputForm extends LightningElement {
     searchDisabled = true;
     nationalId;
     displayPubHol = false;
-    pubHolTitle = 'Public Holidays in ';
+    pubHolTitle;
     publicHolidays = [];
 
     checkValidity(evt) {
@@ -21,7 +21,6 @@ export default class Lwc01NationalIDNumberInputForm extends LightningElement {
             this.setInvalidMessage(evt.target, 'Id Invalid');
             this.publicHolidays = [];
             this.displayPubHol = false;
-            this.pubHolTitle = 'Public Holidays in ';
         }        
     }   
 
@@ -33,7 +32,7 @@ export default class Lwc01NationalIDNumberInputForm extends LightningElement {
     handleClick() {
         insertNationalIdSearch({ nationalIdNumber : this.nationalId })
             .then((result) => {
-                this.pubHolTitle = this.pubHolTitle + result;
+                this.pubHolTitle = 'Public Holidays in ' + result;
 
                 getPublicHolidays({ year : result })
                     .then((res) => {                                                
