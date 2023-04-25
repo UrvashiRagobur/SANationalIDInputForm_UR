@@ -1,0 +1,36 @@
+<template>
+    <lightning-card>
+        <h2 class="slds-text-heading_medium slds-m-bottom_medium slds-p-around_medium">
+            This page allows a user to check if there are any important public holidays on his/her date of birth in South Africa, by inserting his/her South Africa ID Number.
+        </h2>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input name="nationalIdInput"
+                             type="text" 
+                             label="Enter South Africa ID Number" 
+                             placeholder="type here..." 
+                             maxlength="13"
+                             value={nationalId}
+                             onchange={checkValidity}>
+            </lightning-input>
+        </div>
+        <div slot="footer">
+            <lightning-button variant="brand" 
+                              label="Search" 
+                              onclick={handleClick}
+                              disabled={searchDisabled}
+                              class="slds-m-left_x-small">
+            </lightning-button>
+        </div>        
+    </lightning-card>
+    <template if:true={displayPubHol}>
+        <lightning-card title={pubHolTitle}>
+            <ul class="slds-m-around_medium">
+                <template for:each={publicHolidays} for:item="pubHol">
+                    <li key={pubHol}>
+                        {pubHol}
+                    </li>
+                </template>
+            </ul>
+        </lightning-card>
+    </template>    
+</template>
