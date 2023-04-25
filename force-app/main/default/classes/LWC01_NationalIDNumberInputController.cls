@@ -55,13 +55,13 @@ public with sharing class LWC01_NationalIDNumberInputController {
         String apiKey = '2d87e618be3612567d14226d69493cda5c7a1e36';
         String isoCode = 'ZA';
         String request = apiBaseUrl + endpoint + '?api_key=' + apiKey + '&country=' + isoCode + '&year=' + year;
-        System.debug('~~' + request);
+
         Http httpObj = new Http();
         HttpRequest requestBody = new HttpRequest();
         requestBody.setEndpoint(request);
         requestBody.setMethod('POST');
         HttpResponse responseBody = httpObj.send(requestBody);
-        System.debug('~~' + responseBody);
+
         Map<String, Object> mapRes = (Map<String, Object>) JSON.deserializeUntyped(responseBody.getBody());
         Map<String, Object> obj = (Map<String, Object>) mapRes.get('response');
         List<Object> holidays = (List<Object>) obj.get('holidays');
@@ -75,8 +75,6 @@ public with sharing class LWC01_NationalIDNumberInputController {
         }
         
         return publicHolidays;
-    }
-
-    
+    }    
     
 }
